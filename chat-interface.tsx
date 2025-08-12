@@ -18,12 +18,17 @@ export default function Component() {
     help: false,
     logout: false,
   })
+  const [selectedApiOption, setSelectedApiOption] = useState("txt")
 
   const toggleDropdown = (key: string) => {
     setOpenDropdowns((prev) => ({
       ...prev,
       [key]: !prev[key],
     }))
+  }
+
+  const handleApiOptionChange = (option: string) => {
+    setSelectedApiOption(prev => prev === option ? "" : option)
   }
   return (
     <div className="flex h-screen bg-white border-2 border-gray-300 rounded-lg overflow-hidden">
@@ -185,15 +190,15 @@ export default function Component() {
               <h3 className="text-sm font-medium mb-2">Canvas de digitação</h3>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm" className="flex items-center gap-2 bg-transparent">
+              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "pdf" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("pdf")}>
                 <FileText className="w-4 h-4" />
                 pdf
               </Button>
-              <Button variant="outline" size="sm" className="flex items-center gap-2 bg-transparent">
+              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "txt" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("txt")}>
                 <FileText className="w-4 h-4" />
                 txt
               </Button>
-              <Button variant="outline" size="sm" className="flex items-center gap-2 bg-transparent">
+              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "audio" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("audio")}>
                 <Mic className="w-4 h-4" />
                 audio
               </Button>
