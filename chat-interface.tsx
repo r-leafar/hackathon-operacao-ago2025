@@ -161,7 +161,7 @@ export default function Component() {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <div className="p-4 border-b border-gray-200 bg-white">
-          <h2 className="text-lg font-medium">Canvas de exibição do chat</h2>
+          <h2 className="text-lg font-medium">Novo chat</h2>
         </div>
 
         {/* Chat Messages */}
