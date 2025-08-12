@@ -1,35 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { MessageSquare, Settings, HelpCircle, LogOut, Crown, Mail, FileText, Mic } from "lucide-react"
-import { ChevronDown, ChevronRight } from "lucide-react"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { useState } from "react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { HelpCircle, LogOut, Mail, FileText, Mic } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 export default function Component() {
   const [openDropdowns, setOpenDropdowns] = useState({
     email: true, // Email aberto por padrão
-    upgrade: false,
-    customize: false,
-    settings: false,
     help: false,
     logout: false,
-  })
-  const [selectedApiOption, setSelectedApiOption] = useState("txt")
+  });
+  const [selectedApiOption, setSelectedApiOption] = useState("txt");
 
   const toggleDropdown = (key: string) => {
     setOpenDropdowns((prev) => ({
       ...prev,
       [key]: !prev[key],
-    }))
-  }
+    }));
+  };
 
   const handleApiOptionChange = (option: string) => {
-    setSelectedApiOption(prev => prev === option ? "" : option)
-  }
+    setSelectedApiOption((prev) => (prev === option ? "" : option));
+  };
   return (
     <div className="flex h-screen bg-white border-2 border-gray-300 rounded-lg overflow-hidden">
       {/* Sidebar */}
@@ -43,7 +44,11 @@ export default function Component() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <Button variant="outline" size="sm" className="text-xs bg-transparent">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs bg-transparent"
+              >
                 Não
               </Button>
             </div>
@@ -57,95 +62,69 @@ export default function Component() {
         <div className="flex-1 p-4">
           <h3 className="font-semibold text-lg mb-4">Chats</h3>
           <div className="space-y-2">
-            <div className="text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">Java roadmap</div>
+            <div className="text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
+              Java roadmap
+            </div>
           </div>
         </div>
 
         {/* Bottom Menu */}
         <div className="p-4 border-t border-gray-200 space-y-1">
           {/* Email Dropdown */}
-          <Collapsible open={openDropdowns.email} onOpenChange={() => toggleDropdown("email")}>
+          <Collapsible
+            open={openDropdowns.email}
+            onOpenChange={() => toggleDropdown("email")}
+          >
             <CollapsibleTrigger className="flex items-center justify-between w-full text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 <span>sabrinabr@gmail.com</span>
               </div>
-              {openDropdowns.email ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              {openDropdowns.email ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
             </CollapsibleTrigger>
             <CollapsibleContent className="ml-6 mt-1 space-y-1">
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Perfil</div>
+              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
+                Perfil
+              </div>
               <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
                 Configurações da conta
               </div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Privacidade</div>
-            </CollapsibleContent>
-          </Collapsible>
-
-          {/* Upgrade Plan Dropdown */}
-          <Collapsible open={openDropdowns.upgrade} onOpenChange={() => toggleDropdown("upgrade")}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Crown className="w-4 h-4" />
-                <span>Upgrade plan</span>
-              </div>
-              {openDropdowns.upgrade ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            </CollapsibleTrigger>
-            <CollapsibleContent className="ml-6 mt-1 space-y-1">
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Plano Pro</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Plano Enterprise</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Comparar planos</div>
-            </CollapsibleContent>
-          </Collapsible>
-
-          {/* Customize ChatGPT Dropdown */}
-          <Collapsible open={openDropdowns.customize} onOpenChange={() => toggleDropdown("customize")}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <div className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4" />
-                <span>Customize ChatGPT</span>
-              </div>
-              {openDropdowns.customize ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            </CollapsibleTrigger>
-            <CollapsibleContent className="ml-6 mt-1 space-y-1">
               <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
-                Instruções personalizadas
+                Privacidade
               </div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Plugins</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Modelos</div>
-            </CollapsibleContent>
-          </Collapsible>
-
-          {/* Settings Dropdown */}
-          <Collapsible open={openDropdowns.settings} onOpenChange={() => toggleDropdown("settings")}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4" />
-                <span>Settings</span>
-              </div>
-              {openDropdowns.settings ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            </CollapsibleTrigger>
-            <CollapsibleContent className="ml-6 mt-1 space-y-1">
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Geral</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
-                Dados e controles
-              </div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Recursos beta</div>
             </CollapsibleContent>
           </Collapsible>
 
           {/* Help Dropdown */}
-          <Collapsible open={openDropdowns.help} onOpenChange={() => toggleDropdown("help")}>
+          <Collapsible
+            open={openDropdowns.help}
+            onOpenChange={() => toggleDropdown("help")}
+          >
             <CollapsibleTrigger className="flex items-center justify-between w-full text-sm text-gray-600 hover:bg-gray-100 p-2 rounded cursor-pointer">
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-4 h-4" />
-                <span>Help</span>
+                <span>Suporte</span>
               </div>
-              {openDropdowns.help ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              {openDropdowns.help ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
             </CollapsibleTrigger>
             <CollapsibleContent className="ml-6 mt-1 space-y-1">
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">FAQ</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Suporte</div>
-              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">Documentação</div>
+              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
+                FAQ
+              </div>
+              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
+                Entre em contato
+              </div>
+              <div className="text-xs text-gray-500 hover:bg-gray-100 p-2 rounded cursor-pointer">
+                Documentação
+              </div>
             </CollapsibleContent>
           </Collapsible>
 
@@ -177,7 +156,9 @@ export default function Component() {
             {/* Assistant Response */}
             <div className="flex justify-start">
               <div className="max-w-2xl">
-                <p className="text-sm text-gray-700">Só um instante, estou buscando na base de dados.</p>
+                <p className="text-sm text-gray-700">
+                  Só um instante, estou buscando na base de dados.
+                </p>
               </div>
             </div>
           </div>
@@ -187,20 +168,50 @@ export default function Component() {
         <div className="p-4 border-t border-gray-200 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "pdf" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("pdf")}>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`flex items-center gap-2 cursor-pointer ${
+                  selectedApiOption === "pdf"
+                    ? "bg-gray-400 hover:bg-gray-400"
+                    : "bg-transparent"
+                }`}
+                onClick={() => handleApiOptionChange("pdf")}
+              >
                 <FileText className="w-4 h-4" />
                 pdf
               </Button>
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "txt" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("txt")}>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`flex items-center gap-2 cursor-pointer ${
+                  selectedApiOption === "txt"
+                    ? "bg-gray-400 hover:bg-gray-400"
+                    : "bg-transparent"
+                }`}
+                onClick={() => handleApiOptionChange("txt")}
+              >
                 <FileText className="w-4 h-4" />
                 txt
               </Button>
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "audio" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("audio")}>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`flex items-center gap-2 cursor-pointer ${
+                  selectedApiOption === "audio"
+                    ? "bg-gray-400 hover:bg-gray-400"
+                    : "bg-transparent"
+                }`}
+                onClick={() => handleApiOptionChange("audio")}
+              >
                 <Mic className="w-4 h-4" />
                 audio
               </Button>
               <div className="flex-1">
-                <Input placeholder="Digite sua mensagem..." className="w-full" />
+                <Input
+                  placeholder="Digite sua mensagem..."
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
@@ -212,5 +223,5 @@ export default function Component() {
         </div>
       </div>
     </div>
-  )
+  );
 }
