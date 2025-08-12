@@ -166,7 +166,13 @@ export default function Component() {
 
         {/* Input Area */}
         <div className="p-4 border-t border-gray-200 bg-white">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl flex flex-col mx-auto gap-2">
+            <div className="flex-1">
+                <Input
+                  placeholder="Digite sua mensagem..."
+                  className="w-full"
+                />
+              </div>
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
@@ -207,12 +213,6 @@ export default function Component() {
                 <Mic className="w-4 h-4" />
                 audio
               </Button>
-              <div className="flex-1">
-                <Input
-                  placeholder="Digite sua mensagem..."
-                  className="w-full"
-                />
-              </div>
             </div>
           </div>
         </div>
