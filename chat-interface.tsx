@@ -194,7 +194,7 @@ export default function Component() {
                 <FileText className="w-4 h-4" />
                 pdf
               </Button>
-              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "doc" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("doc")}>
+              <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "txt" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("txt")}>
                 <FileText className="w-4 h-4" />
                 txt
               </Button>
