@@ -186,9 +186,6 @@ export default function Component() {
         {/* Input Area */}
         <div className="p-4 border-t border-gray-200 bg-white">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-3">
-              <h3 className="text-sm font-medium mb-2">Canvas de digitação</h3>
-            </div>
             <div className="flex items-center gap-3">
               <Button variant="outline" size="sm" className={`flex items-center gap-2 cursor-pointer ${selectedApiOption === "pdf" ? "bg-gray-400 hover:bg-gray-400" : "bg-transparent"}`} onClick={() => handleApiOptionChange("pdf")}>
                 <FileText className="w-4 h-4" />
