@@ -144,7 +144,7 @@ export default function Component() {
         </div>
 
         {/* Chat Messages */}
-        <ScrollArea className="flex-1 p-6">
+        <ScrollArea className="w-full h-[600px] flex-1 p-6">
           <div className="max-w-4xl mx-auto space-y-6">
             {/* User Message */}
             <div className="flex justify-end">
@@ -154,7 +154,7 @@ export default function Component() {
             </div>
 
             {/* Assistant Response */}
-            <div className="flex justify-start">
+            <div className="flex justify-start border-2 border-gray-100 rounded-xl px-2 py-2 max-w-2xl">
               <div className="max-w-2xl">
                 <p className="text-sm text-gray-700">
                   Só um instante, estou buscando na base de dados.
